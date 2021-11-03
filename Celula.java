@@ -6,17 +6,30 @@ public class Celula {
 	private boolean bombado;
 	private boolean clicado;
 	private boolean sinalizado; 
-	private boolean revelado;
+	private boolean branco;
+	
+	
 	
 	ArrayList <Celula> chunk; 
 	
-	public Celula(){
+	public Celula(){ // Construtor
 		this.bombado = false; 
 		this.clicado = false; 
 		this.sinalizado = false; 
-		this.revelado = false;
+		this.branco = false;
 		
-		this.chunk = new ArrayList(); 
+		
+		this.chunk = new ArrayList(); // Alocagem dinamica
+	}
+	
+	public void addchunk(Celula a) {
+		this.chunk.add(a); 
+	}
+	public int clicado() {
+		this.clicado = true; 
+		if(this.bombado == true) {
+			return -1; 
+		}else return 1; 
 	}
 	
 	public boolean bomba() {
