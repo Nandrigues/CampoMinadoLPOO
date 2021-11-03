@@ -2,7 +2,7 @@ package campominado;
 
 public class Campo {
 	Celula [] [] celulaTab;
-	int i,j;
+	int i,j,cont,vizcombomba;
 	
 	
 	public Campo() {
@@ -82,7 +82,22 @@ public class Campo {
 		
 	}
 		
-		public int bombando() {
+		public void bombando() {
 			
 		}
+
+		public void contaBombas(){
+			for(i=0; i<Constantes.LINHAS; i++) { // Adicionando os vizinhos das celula escolhida
+				for(j=0;j<Constantes.COLUNAS;j++) {
+					vizcombomba = 0;
+					if(celulaTab[i][j].tembomba()==false){
+						for (int cont = 0; cont < celulaTab[i][j].chunk.size(); cont++) {
+							if(celulaTab[i][j].chunk.get(cont).tembomba()==true){
+								vizcombomba++;
+							}
+						}celulaTab[i][j].addvizinho(vizcombomba);
+					}
+				}
+		}
+  }
 }
