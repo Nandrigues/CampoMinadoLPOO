@@ -7,7 +7,7 @@ public class Celula {
 	private boolean clicado;
 	private boolean sinalizado; 
 	private boolean branco;
-	
+	private int vizinhosbomba;
 	
 	
 	ArrayList <Celula> chunk; 
@@ -17,7 +17,7 @@ public class Celula {
 		this.clicado = false; 
 		this.sinalizado = false; 
 		this.branco = false;
-		
+		this.vizinhosbomba = 9;
 		
 		this.chunk = new ArrayList(); // Alocagem dinamica
 	}
@@ -32,6 +32,14 @@ public class Celula {
 		}else return 1; 
 	}
 	
+	public boolean tembomba() {
+		if(this.bombado == true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public boolean bomba() {
 		if(this.bombado == false) {
 			return this.bombado = true; 
@@ -46,6 +54,9 @@ public class Celula {
 			return false; 
 		}
 		
+	}
+	public void addvizinho(int v){
+		this.vizinhosbomba = v;
 	}
 	
 	
