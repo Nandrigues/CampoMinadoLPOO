@@ -1,8 +1,10 @@
 package campominado;
 
+import java.util.Random; 
+
 public class Campo {
 	Celula [] [] celulaTab;
-	int i,j,cont,vizcombomba;
+	int i,j,cont,vizcombomba,minas,ibomba,jbomba;
 	
 	
 	public Campo() {
@@ -12,6 +14,7 @@ public class Campo {
 				celulaTab [i][j] = new Celula(); 
 			}
 		}
+		setBombaTabuleiro(); 
 	}
 		
 		public void adicionandoVizinhos() {
@@ -82,9 +85,6 @@ public class Campo {
 		
 	}
 		
-		public void bombando() {
-			
-		}
 
 		public void contaBombas(){
 			for(i=0; i<Constantes.LINHAS; i++) { // Adicionando os vizinhos das celula escolhida
@@ -95,9 +95,24 @@ public class Campo {
 							if(celulaTab[i][j].chunk.get(cont).tembomba()==true){
 								vizcombomba++;
 							}
-						}celulaTab[i][j].addvizinho(vizcombomba);
+						}celulaTab[i][j].vizinhosBombados(vizcombomba);
 					}
 				}
 		}
   }
-}
+		public void setBombaTabuleiro() {
+			Random rand = new Random(); 
+				minas = 0; 
+				do {
+				ibomba = rand.nextInt(Constantes.LINHAS);
+				jbomba = rand.nextInt(Constantes.COLUNAS);
+					if(!(celulaTab[ibomba][jbomba].getBombado())) {
+						celulaTab[ibomba][jbomba] = new CelulaBombada();
+						minas++; 
+					} 
+				}while(minas<Constantes.NUMINAS);
+				 
+			}
+		}
+
+
