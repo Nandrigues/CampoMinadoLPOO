@@ -1,73 +1,113 @@
-package campominado;
+package celulas;
+
 
 import java.util.ArrayList;
 
-public class Celula {
-	protected boolean bombado;
-	private boolean clicado;
-	protected boolean sinalizado; 
+public abstract class Celula {
+	protected boolean bombado, ehVizinha;
+	private boolean clicado, maluca;
+	protected boolean sinalizado;
 	protected int vizinhosbomba;
-	
-	
-	ArrayList <Celula> chunk; 
-	
-	public Celula(){ // Construtor
-		this.bombado = false; 
-		this.clicado = false; 
-		this.sinalizado = false; 
+	private ArrayList<Celula> chunk;
+
+	public Celula() { // Construtor
+		this.bombado = false;
+		this.maluca = false;
+		this.clicado = false;
+		this.sinalizado = false;
 		this.vizinhosbomba = 9;
-		
-		this.chunk = new ArrayList(); // Alocagem dinamica
-	}
-	
-	public void addchunk(Celula a) { // Adicionando o Array de vizinhos
-		this.chunk.add(a); 
-	}
-	
-	public boolean getclicado() { // Checando se está clicado 
-		return this.clicado;
-	}
-	
-	public void setclicado(boolean click) { // Setando o clicado
-		this.clicado = click;
+		this.ehVizinha = false;
+		this.setChunk(new ArrayList<Celula>());
+
 	}
 
-	public boolean getsinalizado() { // Checando se está sinalizado
+	public void setChunk(ArrayList<Celula> chunk) {
+		try {
+			this.chunk = chunk;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
+		}
+	}
+
+	public ArrayList<Celula> getChunk() {
+		return this.chunk;
+	}
+
+	public void addchunk(Celula a) { // Adicionando o Array de vizinhos
+		this.getChunk().add(a);
+	}
+
+	public void setclicado(boolean click) { // Setando o clicado
+		try {
+			this.clicado = click;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
+		}
+	}
+
+	public boolean getclicado() { // Checando se esta clicado
+		return this.clicado;
+	}
+
+	public void setsinalizado(boolean sinal) { // Setando a sinalizacao
+		try {
+			this.sinalizado = sinal;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
+		}
+	}
+
+	public boolean getMaluca() {
+		return this.maluca;
+	}
+
+	public void setMaluca(boolean ehmaluca) {
+		try {
+			this.maluca = ehmaluca;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
+		}
+	}
+
+	public boolean getsinalizado() { // Checando se esta sinalizado
 		return this.sinalizado;
 	}
-	
-	public void setsinalizado(boolean a) { // Setando a sinalização 
-		this.sinalizado = a;
-	}
-	
+
 	public void setBombado(boolean bomb) { // Setando a bomba
-		this.bombado = bomb;
+		try {
+			this.bombado = bomb;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
+		}
 	}
-	
+
 	public boolean getBombado() { // Checando se tem bomba
-		return this.bombado; 
+		return this.bombado;
 	}
-	
-	public boolean tembomba() { 
-		if(this.bombado == true){
-			return true;
-		}else{
-			return false;
+
+	public void setehVizinha(boolean bomb) { // Setando que nao eh bombada
+		try {
+			this.ehVizinha = bomb;
+			this.bombado = !(bomb);
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
 		}
 	}
-	
-	public boolean sinalizar() {
-		if(this.sinalizado == false) {
-			return this.sinalizado = true;
-		}else {
-			return false; 
+
+	public boolean getehVizinha() {
+		return this.ehVizinha;
+	}
+
+	public int getVizinhosbomba() { // Quantidade de vizinhos com bomba
+		return this.vizinhosbomba;
+	}
+
+	public void setVizinhosbomba(int vbomba) {
+		try {
+			this.vizinhosbomba = vbomba;
+		} catch (Exception e) {
+			System.out.println("Valor Invalido");
 		}
-		
 	}
-	public void vizinhosBombados(int v){ // Quantidade de vizinhos com bomba
-		this.vizinhosbomba = v;
-	}
-	
-	
-	
+
 }

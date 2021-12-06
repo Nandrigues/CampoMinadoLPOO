@@ -1,7 +1,7 @@
-package campominado;
+package celulas;
 
 public class CelulaBranca extends Celula{
-	public void vizinhosBombados(){ 
-		this.vizinhosbomba = 0;
+	public CelulaBranca() {
+		super.setVizinhosbomba(0); 
 	}
 }
