@@ -1,8 +1,9 @@
 package campominado;
 
-public class Constantes {
+public interface Constantes {
 	
-	static int LINHAS = 8; 
-	static int COLUNAS = 8; 
-	static int NUMINAS = 10;
+	public static final int LINHAS = 8; 
+	public static final int COLUNAS = 8; 
+	public static final int NUMINAS = 8;
+	public static final int NUMALUCAS = 8;
 }
